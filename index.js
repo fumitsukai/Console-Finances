@@ -86,3 +86,40 @@ var finances = [
   ['Jan-2017', 138230],
   ['Feb-2017', 671099],
 ];
+
+// total number of months
+
+var totalMonths = finances.length;
+console.log("Total Months: " + totalMonths);
+
+var change = 0;
+var totalChange = 0;
+var average = 0;
+
+// net total amount of profit/loss
+//loop through array
+  //will start counting from first month onwards and sum them together.
+var netProfit = finances[0][1];
+var previous = netProfit;
+for (let i = 1; i < finances.length; i++) {
+  netProfit = netProfit + finances[i][1];
+  change = finances[i][1] - previous;
+  totalChange = totalChange + change;
+  previous = finances[i][1];
+}
+
+average = totalChange / (finances.length - 1);
+
+console.log("Total: $" + netProfit);
+
+console.log("Average Change" + Math.round((average * 100)) / 100);
+
+
+
+
+
+
+
+
+
+
