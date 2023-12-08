@@ -96,7 +96,7 @@ var change = 0;
 var totalChange = 0;
 var average = 0;
 var increase = 0;
-var decrease = 0;
+var decrease = finances[0][1];
 
 // net total amount of profit/loss
 //loop through array
@@ -113,6 +113,11 @@ for (let i = 1; i < finances.length; i++) {
   }
   totalChange = totalChange + change;
   previous = finances[i][1];
+  if (decrease < change) {
+    var greatestDecrease = decrease;
+  } else {
+    decrease = change;
+  }
 }
 
 average = totalChange / (finances.length - 1);
@@ -122,6 +127,8 @@ console.log("Total: $" + netProfit);
 console.log("Average Change" + Math.round((average * 100)) / 100);
 
 console.log("Greatest Increase:" + greatestIncrease);
+console.log("Greatest Decrease:" + greatestDecrease);
+
 
 
 
