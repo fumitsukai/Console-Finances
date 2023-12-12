@@ -87,47 +87,57 @@ var finances = [
   ['Feb-2017', 671099],
 ];
 
+//print beggining of the analysis
+console.log("Financial Analysis");
+console.log("...........................");
+
 // total number of months
 
 var totalMonths = finances.length;
 console.log("Total Months: " + totalMonths);
 
+//initialize variable outside the loop
 var change = 0;
 var totalChange = 0;
 var average = 0;
-var increase = 0;
-var decrease = finances[0][1];
+var netProfit = finances[0][1];
+let greatestIncrease = 0;
+let greatestDecrease = finances[0][1];
 
 // net total amount of profit/loss
 //loop through array
   //will start counting from first month onwards and sum them together.
-var netProfit = finances[0][1];
-var previous = netProfit;
-for (let i = 1; i < finances.length; i++) {
+
+for (let i = 1; i < totalMonths; i++) {
   netProfit = netProfit + finances[i][1];
-  change = finances[i][1] - previous;
-  if (increase > change) {
-    var greatestIncrease = increase;
-  } else {
-    increase = change;
-  }
+  change = finances[i][1] - finances[i-1][1];
+  //check for greatest increase
+  if (change > greatestIncrease) {
+    greatestIncrease = change;
+    //store month
+    var month = finances[i][0];
+  } 
+  //calculate the total of all changes to be able to average outside of the loop
   totalChange = totalChange + change;
-  previous = finances[i][1];
-  if (decrease < change) {
-    var greatestDecrease = decrease;
-  } else {
-    decrease = change;
-  }
+  //check for greatest decrease
+  if (change < greatestDecrease) {
+    greatestDecrease = change;
+    //store month
+    var month2=finances[i][0];
+  } 
 }
 
-average = totalChange / (finances.length - 1);
+//calculate average
+average = totalChange / (totalMonths - 1);
+
+//print out results
 
 console.log("Total: $" + netProfit);
 
-console.log("Average Change" + Math.round((average * 100)) / 100);
+console.log("Average Change: " + Math.round((average * 100)) / 100);
 
-console.log("Greatest Increase:" + greatestIncrease);
-console.log("Greatest Decrease:" + greatestDecrease);
+console.log("Greatest Increase in Profits/Loses: " + month + " " + "(" + "$" + greatestIncrease + ")");
+console.log("Greatest Decrease in Profits/Loses: " + month2 + " " + "(" + "$" + greatestDecrease + ")");
 
 
 
