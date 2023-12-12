@@ -12,7 +12,7 @@ N/A
 
 ## Usage
 
-Link to application: https://fumitsukai.github.io/Bootstrap-Portofolio/
+Link to application: https://fumitsukai.github.io/Console-Finances/
 
 Open console to see the results.
 
